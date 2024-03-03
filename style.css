@@ -58,14 +58,13 @@ body {
 }
 
 .main .h0 {
-  font-size: 40px;
+  height: 100px;
   text-align: center;
   font-family: 'Honk', 'Ariel';
-
-  /* transform: translate(-50%, -50%); */
+  font-size: 100px;
   font-weight: 800;
-  font-size: 50px;
   color: aliceblue;
+  font-size: 80px;
 }
 
 .main .h1 {
