@@ -54,3 +54,12 @@ document.querySelector(".Fibonacci-Search").addEventListener('mouseout', () => {
     document.querySelector(".Fibonacci").style.animation = "fade-out 500ms ease-in-out";
     addAnimationEndListener(document.querySelector(".Fibonacci"));
 });
+
+
+document.querySelector(".Linear-Search").addEventListener("onclick",()=>{
+    location.href="..\..\LinearSearch\LinearSearch.html";
+});
+
+document.querySelector(".Binary-Search").addEventListener("onclick",()=>{
+    location.href="..\..\BinarySearch\BinarySearch.html";
+});

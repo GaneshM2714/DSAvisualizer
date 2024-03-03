@@ -10,23 +10,25 @@
 }
 
 body {
-  background-color: #030637;
+  background-color: #000000;
   font-family: 'Montserrat', sans-serif;
   text-align: center;
-  color: aliceblue;
+  color: azure;
+  font-weight: 700;
   line-height: 1.6;
 }
 
 #title {
   font-family: 'Honk', 'Arial', sans-serif !important;
-  font-size: 3rem;
-  margin-top: 20px;
+  font-size: 4rem;
+  /* padding-top: 20px;  */
+  background-color: #000000;
 }
-#Take{
+#Take,.array,.time{
     display: flex;  
     align-items: center;
     justify-content: center;
-    /* flex-direction: column;   */
+    font-size: x-large;
     margin-top: 20px;
 }
 .ins {

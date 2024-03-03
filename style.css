@@ -12,7 +12,7 @@
 
 body {
   /* width: fit-content; */
-  background-color: #030637;
+  background-color: #000000;
 }
 
 .nav {
@@ -20,7 +20,7 @@ body {
   border: 2px solid black;
   font-size: 20px;
   font-family: 'Montserrat', sans-serif;
-  background-color: #383ebc;
+  background-color: #000000;
   color: azure;
   display: block;
   font-weight: 900;
@@ -58,6 +58,7 @@ body {
 }
 
 .main .h0 {
+  font-size: 40px;
   text-align: center;
   font-family: 'Honk', 'Ariel';
 
