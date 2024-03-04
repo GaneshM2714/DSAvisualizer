@@ -13,6 +13,7 @@ async function visualizeBubbleSort() {
         array[i] = parseInt(array[i], 10);
     }
     
+    
     // console.log(typeof array[0]); debugging
     let iarray=[...array];
     for (let i = 0; i < array.length; i++) {

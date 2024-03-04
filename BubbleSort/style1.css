@@ -32,12 +32,14 @@ body {
     margin-top: 20px;
 }
 .ins {
+  width: 98%;
   margin: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 30px;
+  position: absolute;
 }
 
 .initial-array {
@@ -58,7 +60,7 @@ body {
 
 .code {
   color: white;
-  width: 70vw;
+  /* width: 100vw; */
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
@@ -129,4 +131,11 @@ body {
   .button:active::before {
     scale: 0.7;
   }
-  
+
+
+  .c {
+    background-color: #f8d7da; /* Highlight color */
+    color: #721c24; /* Text color */
+    font-size: 1.1rem;
+    font-weight: bold; /* Bold text for better visibility */
+}
