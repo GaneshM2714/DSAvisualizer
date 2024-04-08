@@ -8,4 +8,7 @@ function redirectToSearchPage() {
 function redirectToSortPage() {
     location.href = "middescription/Sortings/index.html";
 }
+function redirectToSTLPage() {
+    location.href = "middescription/Containers/index.html";
+}
 
