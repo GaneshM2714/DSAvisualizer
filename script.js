@@ -5,10 +5,15 @@ function home() {
 function redirectToSearchPage() {
     location.href = "middescription/searches/index.html";
 }
+
 function redirectToSortPage() {
     location.href = "middescription/Sortings/index.html";
 }
+
 function redirectToSTLPage() {
     location.href = "middescription/Containers/index.html";
 }
 
+function redirectToPathPage(){
+    location.href = "PathFinding-Visualization/index.html";
+}
