@@ -1,4 +1,4 @@
-
+@import url("https://fonts.googleapis.com/css2?family=Honk&family=Protest+Strike&display=swap");
 *{
     margin:0;
     padding:0;
@@ -6,14 +6,15 @@
 }
 body{
     font-family: sans-serif;
-    background-color: #030637;
+    background-color: #000;
 }
 header{
-    background-color: #383ebc;
+    /* background-color: #383ebc; */
     color:azure;
     text-align: center;
-    font-size: 2rem;
+    font-size: 4rem;
     padding: 1rem;
+    font-family: 'Honk' , sans-serif;
 }
 .inputbag{
     margin-top: 2rem;
@@ -69,7 +70,7 @@ input:focus{
     border:1px solid cyan;
     color: #030637;
     box-shadow: 0 0 5px cyan, 0 0 25px cyan,
-    0 0 50px cyan, 0 0 100px cyan, 0 0 200px cyan;
+    0 0 50px cyan, 0 0 100px cyan, 0 0 20px cyan;
 }
 .switch{
     display: flex;
@@ -89,3 +90,13 @@ input:focus{
 span{
     animation: magni 1s ease-in-out 1s both;
 } */
+.results {
+    display: block;
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.comparisons , .final, .showmid {
+    color: #fff;
+    font-size: 1.2rem;
+}

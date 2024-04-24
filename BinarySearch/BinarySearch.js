@@ -1,131 +1,149 @@
-function startSearching() {
+// BinarySearch.js
+async function startSearching() {
     let myGift = checkValidInput();
-    if(myGift === 1)
-    {
+    if (myGift === 1) {
         alert("Kindly fill both the required fields");
         return;
-    }
-    else if(myGift === 2)
-    {
+    } else if (myGift === 2) {
         alert("Oops! you forgot the array, please fill it");
         return;
-    }
-    else if(myGift === 3)
-    {
+    } else if (myGift === 3) {
         alert("Oops! you forgot the key, please fill it");
         return;
     }
     let inputArray = document.getElementsByClassName("array")[0].value;
-    console.log(inputArray[0] + 1);
-    var mainarr = inputArray.split(" ");
-    for (let i = 0; i < mainarr.length; i++) {
-        mainarr[i] = parseInt(mainarr[i], 10);
-    }
+    var mainarr = inputArray.split(" ").map(num => parseInt(num, 10));
+    mainarr.sort((a, b) => a - b); // Sorting the array
+    displayResult('');
+    displayComparisons(0);
+    displayArray(mainarr);
+    searcharr(mainarr);
+}
 
-    //The Array must be sorted for this
-    for (let i = 0; i < mainarr.length - 1; i++) {
-        for (let j = 0; j < mainarr.length - 1 - i; j++) {
-            if (mainarr[j] > mainarr[j + 1]) {
-                let temp = mainarr[j];
-                mainarr[j] = mainarr[j + 1];
-                mainarr[j + 1] = temp;
-            }
-        }
-    }
-    mainarr.forEach(function (i) {
+function displayArray(arr) {
+    let showDiv = document.querySelector(".show");
+    showDiv.innerHTML = "";
+    arr.forEach(function (i) {
         let box = document.createElement('div');
-        box.style.display = "inline-flex";
         box.className = 'box';
-        box.style.height = '4rem';
-        box.style.width = '5rem';
-        box.style.border = "2px solid black";
-        box.style.backgroundColor = "white";
-        box.style.color = "black";
+        box.style.display = "flex";
+        box.className = 'box';
+        box.style.height = '8vh';
+        box.style.width = '6vw';
+        box.style.border = "3px solid white";
+        box.style.backgroundColor = "black";
+        box.style.color = "white";
         box.style.justifyContent = "center";
         box.style.alignItems = "center";
-        box.style.fontSize = "32px";
-        box.innerHTML = i;
-        document.querySelector(".show").appendChild(box);
+        box.style.fontSize = "100%";
+        box.textContent = i;
+        showDiv.appendChild(box);
     });
 }
 
-function searcharr() {
+async function searcharr(mainarr) {
+    let comparisons = 0;
+
     var k = parseInt(document.querySelector(".key").value, 10);
-    let boxes = document.querySelectorAll(".box");
+    // let ans;
+    let ans = await binarySearch(0, mainarr.length - 1);
+
+
+    // console.log("Ans = "+ ans);
+    if (ans == -1) {
+        console.log("Ans = " + ans);
+        displayResult(`Element ${k} is not present in the array.`, "red");
+    }
+
+    async function binarySearch(low, high) {
+        return new Promise(resolve => {
+            let ans = -1;
+
+            async function search(low, high) {
+                if (low <= high) {
+                    comparisons++;
+                    await displayComparisons(comparisons);
+                    let mid = Math.floor((low + high) / 2);
+                    await displayMid(mid);
+                    let box = document.querySelectorAll(".box")[mid];
+                    await updateBox(box);
+
+                    if (k === parseInt(box.textContent, 10)) {
+                        ans = mid;
+                        resolve(ans);
+                    } else if (k < parseInt(box.textContent, 10)) {
+                        await search(low, mid - 1);
+                    } else {
+                        await search(mid + 1, high);
+                    }
+                } else {
+                    resolve(ans);
+                }
+            }
+
+            search(low, high);
+        });
+    }
 
     async function updateBox(box) {
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        let isFound = false;
-        let value = parseInt(box.innerHTML, 10);
+        let value = parseInt(box.textContent, 10);
 
         if (k === value) {
             box.style.transition = "transform 0.5s ease, background-color 1.0s ease";
             box.style.transform = "scale(1.5)";
             box.style.backgroundColor = "green";
-            isFound = true;
-        } 
-        else {
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            displayResult(`Element ${k} found successfully .`,"green");
+            box.style.transform = "scale(1.0)";
+        } else {
             box.style.transition = "transform 0.5s ease, background-color 1.0s ease";
             box.style.transform = "scale(1.2)";
-            box.style.backgroundColor = "black";
-            box.style.color = "white";          
-        }
-        return isFound;
-    }
+            box.style.backgroundColor = "red";
+            box.style.color = "white";
 
-    async function binarySearch(low, high) {
-        if (low <= high) {
-            let mid = Math.floor((low + high) / 2);
-            let box = boxes[mid];
-            let found = await updateBox(box);
-
-            if (found) {
-                let resultDiv = document.createElement('div');
-                resultDiv.className = "found";
-                resultDiv.style.textAlign = "center";
-                resultDiv.style.fontSize = "48px";
-                resultDiv.style.color = "blue";
-                // resultDiv.innerHTML = `Element ${box.innerHTML} found successfully at location ${mid + 1}`;
-                document.querySelector(".show").appendChild(resultDiv);
-            } 
-            else {
-                if (k < parseInt(box.innerHTML, 10)) {
-                    binarySearch(low, mid - 1);
-                } 
-                else {
-                    binarySearch(mid + 1, high);
-                }
-            }
-        } 
-        else {
-            let resultDiv = document.createElement('div');
-            resultDiv.className = "found";
-            resultDiv.style.textAlign = "center";
-            resultDiv.style.fontSize = "48px";
-            resultDiv.style.color = "red";
-            // resultDiv.innerHTML = `Element ${k} is not present in the array`;
-            document.querySelector(".show").appendChild(resultDiv);
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            box.style.transform = "scale(1.0)";
         }
     }
 
-    binarySearch(0, boxes.length - 1);
+
 }
 
-function checkValidInput()
-{
-    myItms = document.getElementById('utensil').value;
-    myKey = document.getElementById('value').value;
+async function displayResult(message,color = "white") {
+    let resultDiv = document.createElement('div');
+    resultDiv.textContent = '';
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    resultDiv.className = "result";
+    resultDiv.style.color = color;
+    resultDiv.textContent = message;
+    document.querySelector(".final").appendChild(resultDiv);
+}
 
-    if(myItms.length === 0 && myKey.length === 0)
-    {
+async function displayComparisons(count) {
+    let comparisonsDiv = document.querySelector(".comparisons");
+    comparisonsDiv.textContent = '';
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    comparisonsDiv.textContent = `Total Comparisons: ${count}`;
+}
+
+async function displayMid(mid) {
+    let midDiv = document.querySelector(".showmid");
+    midDiv.textContent = '';
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    midDiv.textContent = `Mid: ${mid}`;
+}
+
+
+function checkValidInput() {
+    let myItms = document.getElementById('utensil').value;
+    let myKey = document.getElementById('value').value;
+
+    if (myItms.length === 0 && myKey.length === 0) {
         return 1;
     }
-    if(myItms.length === 0)
-    {
+    if (myItms.length === 0) {
         return 2;
-    }
-    else if(myKey.length === 0)
-    {
+    } else if (myKey.length === 0) {
         return 3;
     }
 }
