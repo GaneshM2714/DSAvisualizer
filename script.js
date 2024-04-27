@@ -15,5 +15,5 @@ function redirectToSTLPage() {
 }
 
 function redirectToPathPage(){
-    location.href = "PathFinding-Visualization/index.html";
+    location.href = "PathFinder/index.html";
 }
